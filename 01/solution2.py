@@ -7,6 +7,6 @@ def get_lines():
 
 numbers = [int(x) for x in get_lines()]
 
-for x, y in combinations(numbers, 2):
-    if x + y == 2020:
-        print(x*y)
+for x, y, z in combinations(numbers, 3):
+    if x + y + z == 2020:
+        print(x*y*z)
