@@ -69,9 +69,9 @@ def is_valid(passport):
         return False
 
     hcl = passport['hcl']
-    if hcl[0] != '#':
-
+    if hcl[0] != '#' or len(hcl) != 7:
         return False
+
     hcl_color = hcl[1:]
     for letter in hcl_color:
         if letter not in '0123456789abcdef':
