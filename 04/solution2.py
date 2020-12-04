@@ -63,9 +63,13 @@ def is_valid(passport):
         return False
 
     hgh_value = int(passport['hgt'][:-2])
-    if hgh_unit == 'cm' and (hgh_value < 150 or hgh_value > 193):
-        return False
-    elif hgh_unit == 'in' and (hgh_value < 59 or hgh_value > 76):
+    if hgh_unit == 'cm':
+        if hgh_value < 150 or hgh_value > 193:
+            return False
+    elif hgh_unit == 'in':
+        if hgh_value < 59 or hgh_value > 76:
+            return False
+    else:
         return False
 
     hcl = passport['hcl']
