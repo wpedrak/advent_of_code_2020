@@ -13,13 +13,7 @@ def get_id(seat: str):
     return int(seat, base=2)
 
 
-all_free_ids = set(range(2 ** 10)) - set(map(get_id, get_lines()))
-
-for free_id in all_free_ids:
-    if free_id == 0 or free_id == 2 ** 10 - 1:
-        continue
-
-    if (free_id - 1) in all_free_ids or (free_id + 1) in all_free_ids:
-        continue
-
-    print(free_id)
+taken_ids = set(map(get_id, get_lines()))
+all_free_ids = set(range(min(taken_ids), max(taken_ids) + 1))
+my_id = next(iter(all_free_ids - taken_ids))
+print(my_id)
