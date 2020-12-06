@@ -9,10 +9,12 @@ REQUIRED_FIELDS = [
     # 'cid',
 ]
 
+
 def get_lines():
     file = open("input.txt", "r")
     lines = [line.rstrip('\n') for line in file]
     return lines
+
 
 def get_passports():
     passports = []
@@ -37,8 +39,9 @@ def is_valid_passport(passport):
     for field in REQUIRED_FIELDS:
         if field not in passport:
             return False
-    
+
     return True
+
 
 valid_passports_number = 0
 

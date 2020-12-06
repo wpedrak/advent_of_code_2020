@@ -1,9 +1,8 @@
-from collections import Counter
-
 def get_lines():
     file = open("input.txt", "r")
     lines = [line.rstrip('\n') for line in file]
     return lines
+
 
 def count_trees(tree_map, step_right, step_down):
     height = len(tree_map)
@@ -17,6 +16,7 @@ def count_trees(tree_map, step_right, step_down):
         x += step_right
 
     return number_of_trees
+
 
 tree_map = get_lines()
 print(count_trees(tree_map, 3, 1))

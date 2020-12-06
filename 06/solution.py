@@ -2,11 +2,14 @@ def get_groups():
     file = open("input.txt", "r").read()[:-1]
     return file.split('\n\n')
 
+
 def get_lines_from_group(group):
     return group.split('\n')
 
+
 def get_groups_lines():
     return [get_lines_from_group(group) for group in get_groups()]
+
 
 sum_count = 0
 

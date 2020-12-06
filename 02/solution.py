@@ -1,12 +1,15 @@
 from collections import Counter
 
+
 def get_lines():
     file = open("input.txt", "r")
     lines = [line.rstrip('\n') for line in file]
     return lines
 
+
 def get_parsed_lines():
     return [parse_line(line) for line in get_lines()]
+
 
 def parse_line(line):
     splitted = line.split()
@@ -17,6 +20,7 @@ def parse_line(line):
     password = splitted[2]
 
     return from_policy, to_policy, letter, password
+
 
 number_of_correct_passwords = 0
 

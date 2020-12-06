@@ -3,8 +3,10 @@ def get_lines():
     lines = [line.rstrip('\n') for line in file]
     return lines
 
+
 def get_parsed_lines():
-    return[parse_line(line) for line in get_lines()]
+    return [parse_line(line) for line in get_lines()]
+
 
 def parse_line(line):
     splitted = line.split()
@@ -16,9 +18,10 @@ def parse_line(line):
 
     return first_idx, second_idx, letter, password
 
+
 number_of_correct_passwords = 0
 
-for first_idx, second_idx, letter, password in  get_parsed_lines():
+for first_idx, second_idx, letter, password in get_parsed_lines():
     number_of_matches = (password[first_idx - 1] == letter) + (password[second_idx - 1] == letter)
     number_of_correct_passwords += number_of_matches == 1
 

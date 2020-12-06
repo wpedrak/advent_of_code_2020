@@ -8,10 +8,12 @@ REQUIRED_FIELDS = [
     'pid',
 ]
 
+
 def get_lines():
     file = open("input.txt", "r")
     lines = [line.rstrip('\n') for line in file]
     return lines
+
 
 def get_passports():
     passports = []
@@ -36,8 +38,9 @@ def has_all_fields(passport):
     for field in REQUIRED_FIELDS:
         if field not in passport:
             return False
-    
+
     return True
+
 
 def is_valid(passport):
     if not passport['byr'].isnumeric():
@@ -49,7 +52,7 @@ def is_valid(passport):
 
     if not passport['iyr'].isnumeric():
         return False
-    
+
     iyr = int(passport['iyr'])
     if iyr < 2010 or iyr > 2020:
         return False
@@ -90,6 +93,7 @@ def is_valid(passport):
         return False
 
     return True
+
 
 valid_passports_number = 0
 
