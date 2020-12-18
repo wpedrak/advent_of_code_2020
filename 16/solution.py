@@ -29,7 +29,7 @@ def parse_rule(line):
     return name, range1_from, range1_to, range2_from, range2_to
 
 
-def is_ticket_valid(rules, field):
+def is_field_valid(rules, field):
     for _, range1_from, range1_to, range2_from, range2_to in rules:
         if range1_from <= field <= range1_to:
             return True
@@ -47,7 +47,7 @@ tickets = get_nearby_tickets()
 
 for ticket in tickets:
     for field in ticket:
-        if not is_ticket_valid(rules, field):
+        if not is_field_valid(rules, field):
             error_rate += field
 
 print(error_rate)
