@@ -1,6 +1,16 @@
 from collections import Counter
 from math import sqrt
 
+PIXEL_ON = '#'
+PIXELS_PER_MONSTER = 15
+MONSTER_LENGTH = 20
+MONSTER_HEIGHT = 3
+MONSTER_PIXELS_IDX = [
+    [18],
+    [0, 5, 6, 11, 12, 17, 18, 19],
+    [1, 4, 7, 10, 13, 16],
+]
+
 
 def get_tiles():
     tiles_strings = open("input.txt", "r").read().split('\n\n')
@@ -159,10 +169,48 @@ def merge_tiles(board):
     return image
 
 
+def count_pixels_on(image):
+    pixels_on = 0
+    for row in image:
+        for pixel in row:
+            pixels_on += pixel == PIXEL_ON
+
+    return pixels_on
+
+
+def count_monsters(image):
+    monsters_count = 0
+    height = len(image)
+    width = len(image[0])
+
+    for image_variation in get_tile_variations(image):
+        for y in range(height - MONSTER_HEIGHT):
+            for x in range(width - MONSTER_LENGTH):
+                monsters_count += check_if_monster(image_variation, x, y)
+
+    return monsters_count
+
+
+def check_if_monster(image_variation, x, y):
+    checked_chunk = [
+        image_variation[y + dy][x:x + MONSTER_LENGTH]
+        for dy in range(MONSTER_HEIGHT)
+    ]
+
+    for dy in range(MONSTER_HEIGHT):
+        for dx in MONSTER_PIXELS_IDX[dy]:
+            if checked_chunk[dy][dx] != PIXEL_ON:
+                return False
+
+    return True
+
+
 if __name__ == '__main__':
     tiles = get_tiles()
     tiles_board = inset_tiles(tiles)
     cropped_tiles_board = crop_all_tiles(tiles_board)
     image = merge_tiles(cropped_tiles_board)
-    tmp = rotate_clockwise(get_tile_flip(image))
-    print_tile(tmp)
+    pixels_on = count_pixels_on(image)
+    monsters_count = count_monsters(image)
+    result = pixels_on - monsters_count * PIXELS_PER_MONSTER
+    print(result)
